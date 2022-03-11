@@ -33,8 +33,32 @@ class Solution:
         return list_to_return
 
 
+
+
+    def isPalindrome(self, number: int):
+
+        def flipNum(num: int, number):
+
+            print(num)
+            n = num
+            while n >= 10:
+                check_sum = number//n
+                number = number%n
+                print(check_sum)
+
+
+                n /= 10
+            #flip_num = number//n + number%n//10*10 + number%n%10*100
+                print(n)
+
+        n = 1
+        while number/n >= 10:
+            n *= 10
+        flipNum(n, number)
+
+
+
+
 a = Solution()
+a.isPalindrome(2441)
 
-b = a.twoSum(nums = [2,7,11,15], target=40)
-
-print(b)
