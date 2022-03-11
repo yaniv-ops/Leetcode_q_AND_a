@@ -1,25 +1,23 @@
-
-"""///
-
-1. Two Sum
-
-Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
-
-You may assume that each input would have exactly one solution, and you may not use the same element twice.
-
-You can return the answer in any order.
-
-Example 1:
-
-Input: nums = [2,7,11,15], target = 9
-Output: [0,1]
-Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
-
-
-///"""
-
-
 class Solution:
+    """///
+
+    1. Two Sum
+
+    Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+    You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+    You can return the answer in any order.
+
+    Example 1:
+
+    Input: nums = [2,7,11,15], target = 9
+    Output: [0,1]
+    Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+
+
+    ///"""
+
     def twoSum(self, nums, target):
         list = nums
         list_to_return = []
@@ -32,33 +30,46 @@ class Solution:
                     list_to_return = [item, bacon]
         return list_to_return
 
+    """///
 
+    Given an integer x, return true if x is palindrome integer.
+
+    An integer is a palindrome when it reads the same backward as forward.
+
+    For example, 121 is a palindrome while 123 is not.
+    
+    Follow up: Could you solve it without converting the integer to a string?
+
+    ///"""
 
 
     def isPalindrome(self, number: int):
 
         def flipNum(num: int, number):
 
-            print(num)
+            number2 = number
+            check_sum =0
+            multi = 1
             n = num
-            while n >= 10:
-                check_sum = number//n
-                number = number%n
-                print(check_sum)
-
-
+            while n >= 1:
+                check_sum += number2//n * multi
+                number2 = number2%n
+                multi *= 10
                 n /= 10
-            #flip_num = number//n + number%n//10*10 + number%n%10*100
-                print(n)
+            return check_sum
 
         n = 1
         while number/n >= 10:
             n *= 10
-        flipNum(n, number)
+        b = flipNum(n, number)
+        if b == number and b/10 > 1:
+            return True
+        else:
+            return False
 
 
 
 
 a = Solution()
-a.isPalindrome(2441)
+C = a.isPalindrome(223)
 
