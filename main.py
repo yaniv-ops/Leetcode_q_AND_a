@@ -68,8 +68,47 @@ class Solution:
             return False
 
 
+global total_sum
+total_sum = 0
+
+def romanToInt(word, sum):
+
+    total_sum = sum
+    roman_dict = {'I':1,
+                  'IV':4,
+                    'V':5,
+                  'IX':9,
+                    'X':10,
+                  'XL':40,
+                    'L':50,
+                  'XC':90,
+                    'C':100,
+                  'CD':400,
+                    'D':500,
+                  'CM':900,
+                    'M':1000,
+                            }
+
+    worded = word[:2]
+    end = word[2:]
+    if len(word) == 1:
+        total_sum += roman_dict[worded]
+        return total_sum
+
+    if worded in roman_dict:
+        total_sum += roman_dict[worded]
+    else:
+
+        total_sum = total_sum + roman_dict[worded[0]] + roman_dict[worded[1]]
+
+    if len(end) >= 1:
+        a = romanToInt(end, sum=total_sum)
+    else:
+        return total_sum
+    return a
 
 
-a = Solution()
-C = a.isPalindrome(223)
+a = romanToInt('XXIX', 0)
+
+
 
