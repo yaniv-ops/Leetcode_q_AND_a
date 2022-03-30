@@ -89,46 +89,68 @@ class Solution:
 
  
     '''
-global total_sum
-total_sum = 0
+    global total_sum
+    total_sum = 0
 
-def romanToInt(word, sum):
+    def romanToInt(word, sum):
 
-    total_sum = sum
-    roman_dict = {'I':1,
-                  'IV':4,
-                    'V':5,
-                  'IX':9,
-                    'X':10,
-                  'XL':40,
-                    'L':50,
-                  'XC':90,
-                    'C':100,
-                  'CD':400,
-                    'D':500,
-                  'CM':900,
-                    'M':1000,
-                            }
+        total_sum = sum
+        roman_dict = {'I':1,
+                      'IV':4,
+                        'V':5,
+                      'IX':9,
+                        'X':10,
+                      'XL':40,
+                        'L':50,
+                      'XC':90,
+                        'C':100,
+                      'CD':400,
+                        'D':500,
+                      'CM':900,
+                        'M':1000,
+                                }
 
-    worded = word[:2]
-    end = word[2:]
-    if len(word) == 1:
-        total_sum += roman_dict[worded]
-        return total_sum
+        worded = word[:2]
+        end = word[2:]
+        if len(word) == 1:
+            total_sum += roman_dict[worded]
+            return total_sum
 
-    if worded in roman_dict:
-        total_sum += roman_dict[worded]
-    else:
+        if worded in roman_dict:
+            total_sum += roman_dict[worded]
+        else:
 
-        total_sum = total_sum + roman_dict[worded[0]] + roman_dict[worded[1]]
+            total_sum = total_sum + roman_dict[worded[0]] + roman_dict[worded[1]]
 
-    if len(end) >= 1:
-        a = romanToInt(end, sum=total_sum)
-    else:
-        return total_sum
-    return a
+        if len(end) >= 1:
+            a = object.romanToInt(end, sum=total_sum)
+        else:
+            return total_sum
+        return a
+    '''
+    Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+    
+    An input string is valid if:
+    
+    Open brackets must be closed by the same type of brackets.
+    Open brackets must be closed in the correct order.
+    
+    
+    '''
+
+def isPar(s: str) -> bool:
+    num = 0
+    table = {"[":"]",
+             "{":"}",
+             "(":")"}
+    for item in range(len(s)-1):
+        if s[item] in table.values() and s[item +1] in table.keys():
+            print(s[num:item +1])
+            num = item +1
+    print(s[num:len(s)])
 
 
-a = romanToInt('L', 0)
+a = isPar('((())){([])}{(())}{}{}[](((({{}})))[]')
 print(a)
+
 
