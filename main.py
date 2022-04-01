@@ -138,16 +138,29 @@ class Solution:
     
     '''
 
+table = {"[":"]",
+        "{":"}",
+        "(":")"}
+
+def check_par_block(s: str) -> bool:
+    print(f"{s[0]} {s[-1]}")
+    if s[-1] == table[s[0]]:
+        egg = s[1:-2]
+        print(egg)
+
+
+
+
 def isPar(s: str) -> bool:
     num = 0
-    table = {"[":"]",
-             "{":"}",
-             "(":")"}
     for item in range(len(s)-1):
         if s[item] in table.values() and s[item +1] in table.keys():
             print(s[num:item +1])
+            into = s[num:item +1]
+            check_par_block(into)
             num = item +1
     print(s[num:len(s)])
+    check_par_block(s[num:len(s)])
 
 
 a = isPar('((())){([])}{(())}{}{}[](((({{}})))[]')
