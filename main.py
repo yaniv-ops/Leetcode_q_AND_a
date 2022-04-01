@@ -143,27 +143,36 @@ table = {"[":"]",
         "(":")"}
 
 def check_par_block(s: str) -> bool:
-    print(f"{s[0]} {s[-1]}")
+    if not s:
+        return True
     if s[-1] == table[s[0]]:
-        egg = s[1:-2]
-        print(egg)
+        if len(s) == 2:
+            return True
+        print(s[1:-1])
+        result = check_par_block(s[1:-1])
+        return result
+    return False
 
 
 
 
 def isPar(s: str) -> bool:
+
     num = 0
     for item in range(len(s)-1):
         if s[item] in table.values() and s[item +1] in table.keys():
-            print(s[num:item +1])
             into = s[num:item +1]
-            check_par_block(into)
+            print(into)
+            result = check_par_block(into)
             num = item +1
-    print(s[num:len(s)])
-    check_par_block(s[num:len(s)])
+            return result
+
+    print("sec")
+    result = check_par_block(s)
+    return result
 
 
-a = isPar('((())){([])}{(())}{}{}[](((({{}})))[]')
+a = isPar("[[]")
 print(a)
 
 
