@@ -138,41 +138,42 @@ class Solution:
     
     '''
 
-table = {"[":"]",
-        "{":"}",
-        "(":")"}
+    table = {"[":"]",
+            "{":"}",
+            "(":")"}
 
-def check_par_block(s: str) -> bool:
-    if not s:
-        return True
-    if s[-1] == table[s[0]]:
-        if len(s) == 2:
+    def check_par_block(self, s: str) -> bool:
+        if not s:
             return True
-        print(s[1:-1])
-        result = check_par_block(s[1:-1])
-        return result
-    return False
-
-
-
-
-def isPar(s: str) -> bool:
-
-    num = 0
-    for item in range(len(s)-1):
-        if s[item] in table.values() and s[item +1] in table.keys():
-            into = s[num:item +1]
-            print(into)
-            result = check_par_block(into)
-            num = item +1
+        if s[-1] == self.table[s[0]]:
+            if len(s) == 2:
+                return True
+            print(s[1:-1])
+            result = self.check_par_block(s[1:-1])
             return result
-
-    print("sec")
-    result = check_par_block(s)
-    return result
+        return False
 
 
-a = isPar("[[]")
-print(a)
+
+
+    def isPar(self, s: str) -> bool:
+
+        num = 0
+        for item in range(len(s)-1):
+            if s[item] in self.table.values() and s[item +1] in self.table.keys():
+                into = s[num:item +1]
+                result = self.check_par_block(into)
+                share = self.isPar(s[item +1: len(s)])
+                num = item +1
+                if result == share:
+                    return share
+                else:
+                    return False
+        result = self.check_par_block(s)
+        return result
+
+a = Solution()
+b = a.isPar("[]()()[][]{}{}")
+print(b)
 
 
