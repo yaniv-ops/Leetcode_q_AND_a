@@ -148,7 +148,6 @@ class Solution:
         if s[-1] == self.table[s[0]]:
             if len(s) == 2:
                 return True
-            print(s[1:-1])
             result = self.check_par_block(s[1:-1])
             return result
         return False
@@ -173,7 +172,7 @@ class Solution:
         return result
 
 a = Solution()
-b = a.isPar("[]()()[][]{}{}")
+b = a.isPar("((()))")
 print(b)
 
 
