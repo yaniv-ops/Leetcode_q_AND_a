@@ -22,6 +22,8 @@ class hashTable:
             convertion_list.append(x)
             print(self.content[i])
             print(convertion_list)
+            for i in convertion_list:
+                print(i[0], i[1])
 
 
 
