@@ -11,7 +11,9 @@ class HashTable:
 
     def __getitem__(self, index):
         baconhash = self.get_hash(index)
-        return self.arr[baconhash]
+        for element in self.arr[baconhash]:
+            if element[0] == index:
+                return element[1]
 
     def __setitem__(self, key, val):
         found = False
@@ -23,6 +25,13 @@ class HashTable:
                 break
         if not found:
             self.arr[baconhash].append((key, val))
+
+
+    def __delitem__(self, key):
+        baconhash = self.get_hash(key)
+        for index, element in enumerate(self.arr[baconhash]):
+            if element[0] == key:
+                del self.arr[baconhash][index]
 
 
 
