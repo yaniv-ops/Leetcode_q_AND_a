@@ -171,8 +171,53 @@ class Solution:
         result = self.check_par_block(s)
         return result
 
-a = Solution()
-b = a.isPar("((()))")
-print(b)
+
+'''
+You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
+
+Find two lines that together with the x-axis form a container, such that the container contains the most water.
+
+Return the maximum amount of water a container can store.
+
+Notice that you may not slant the container.
 
 
+
+'''
+
+global max
+max = 0
+
+def maxArea(height) -> int:
+
+    while height:
+        for item in range(len(height)-1):
+            if height[item] <= height[len(height) -1]:
+                result = int(height[item] * len(height[item:len(height) -1]))
+            else:
+                result = int(height[len(height) -1 ] * len(height[item:len(height) -1]))
+            global max
+            if result > max:
+                max = result
+        height.pop()
+        maxArea(height)
+    return max
+
+number_max = maxArea([1,8,6,2,5,4,8,3,7])
+print(number_max)
+
+'''
+
+
+
+'''
+
+
+
+def findLucky(arr):
+    unrep = list(set(arr))
+    unrep.sort(reverse=True)
+    for val in unrep:
+        if val == arr.count(val):
+            return val
+    return -1
