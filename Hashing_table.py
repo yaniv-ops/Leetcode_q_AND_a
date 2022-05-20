@@ -36,7 +36,9 @@ class HashTable:
 
 
 t = HashTable()
-b = t.get_hash('march 6')
+
+print(t.arr)
+print(t['Jan 9'])
 
 t['march 14'] = 77
 print(t['march 6'])
